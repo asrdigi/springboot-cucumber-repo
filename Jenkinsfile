@@ -16,7 +16,7 @@ pipeline{
     	stage ('Test Stage') {
 
             steps {
-                    bat 'mvn test' 
+                    bat 'mvn verify' 
                   }
                                    
 
@@ -26,13 +26,19 @@ pipeline{
 
             steps {
                
-                    bat 'mvn package'                
+                    bat 'mvn install'                
 
             }
         }
 
        
-       
+       stage ('Cucumber Reports') {
+       		steps {
+				cucumber fileIncludePattern: '**/*.json', reportTitle: 'My Sample Report', sortingMethod: 'NATURAL'
+            }
+            
+
+        }
         
 
     }
