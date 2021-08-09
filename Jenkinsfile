@@ -33,10 +33,13 @@ pipeline{
 
        
        stage ('Cucumber Reports') {
-       		steps {
-				cucumber fileIncludePattern: '**/*.json', reportTitle: 'My Sample Report', sortingMethod: 'NATURAL'
+
+            steps {
+                cucumber buildStatus: "UNSTABLE",
+                    fileIncludePattern: "**/cucumber.json",
+                    jsonReportDirectory: 'target'
+
             }
-            
 
         }
         
