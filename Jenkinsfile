@@ -16,9 +16,8 @@ pipeline{
     	stage ('Test Stage') {
 
             steps {
-                
-                    bat 'mvn test'
-                
+                    bat mvn clean test -Dcucumber.options=\"src/test/resources/features/"}
+                                   
 
             }
         }       
@@ -34,12 +33,11 @@ pipeline{
 
        
        stage('Generate HTML report') {
-        steps{
-         	cucumber buildStatus: 'UNSTABLE',
-                reportTitle: 'My report',
-                fileIncludePattern: '**/*.json',
-                trendsLimit: 10                
-             }
+        finally {
+                           cucumber buildStatus: "UNSTABLE", 
+                           fileIncludePattern: "**/cucumber.json",
+                           jsonReportDirectory: 'target'
+                 }
     } 
         
 
