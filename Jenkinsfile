@@ -16,7 +16,7 @@ pipeline{
     	stage ('Test Stage') {
 
             steps {
-                    bat mvn clean test -Dcucumber.options=\"src/test/resources/features/"}
+                    bat mvn clean test -Dcucumber.options=\"src//test//resources//features\"}
                                    
 
             }
